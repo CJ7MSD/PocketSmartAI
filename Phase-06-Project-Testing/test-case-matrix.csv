@@ -1,0 +1,13 @@
+ID,Module,Test,Expected Result,Status
+TC-01,Authentication,Register with valid data,Account created; login page shown; email is not auto-pasted,Pass/Retest
+TC-02,Authentication,Login with valid credentials,User enters main Home page; session remains active,Pass/Retest
+TC-03,Authentication,Logout,Session ends and Login becomes available,Pass/Retest
+TC-04,Home Planner,Select multiple item types and quantities,Separate requested item types are searched/recommended,Pass/Retest
+TC-05,Home Planner,Budget input,Recommendation stays budget-aware and reports budget issues clearly,Pass/Retest
+TC-06,Party Planner,Guest count + budget,Party recommendations generated,Pass/Retest
+TC-07,Jewelry Planner,Text inputs,Jewelry recommendations generated,Pass/Retest
+TC-08,Jewelry Planner,Optional image input,Image-aware recommendation flow works when configured,Pass/Retest
+TC-09,Live API,SerpApi valid key,Usable shopping results returned,Pass/Retest
+TC-10,AI API,Gemini valid model/key,Structured AI response returned,Pass/Retest
+TC-11,Dashboard,Open while logged in,No login flicker; stable navigation,Pass/Retest
+TC-12,UI/UX,Login/Register pages,Main navbar hidden; centered PocketSmart branding visible,Pass/Retest

@@ -36,7 +36,7 @@ API Keys
 Use a Gemini API key for Gemini AI generation and a SerpApi API key for Google Shopping/live product data. Provider credentials are separate.
 
 Add the keys to .env:
-
+git status
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 SERPAPI_API_KEY=YOUR_SERPAPI_API_KEY
 

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="PocketSmart AI - smart budget planning and recommendations">
+<title>{% block title %}PocketSmart AI | Smart Budget Planner{% endblock %}</title>
+<link rel="icon" type="image/svg+xml" href="/static/icons/favicon.svg">
+<link rel="shortcut icon" href="/static/icons/favicon.svg">
+<link rel="stylesheet" href="/static/css/app.css?v=11">
+<style>
+/* Keep auth navigation stable: the cached session state decides what is visible immediately. */
+html.auth-unknown #login-link, html.auth-unknown #logout-link { visibility:hidden !important; pointer-events:none !important; }
+html.auth-logged-in #login-link { display:none !important; }
+html.auth-logged-out #logout-link { display:none !important; }
+</style>
+<script>
+(function(){
+  try {
+    document.documentElement.classList.add(
+      localStorage.getItem('pocketsmart_logged_in') === '1' ? 'auth-logged-in' : 'auth-unknown'
+    );
+  } catch (e) {
+    document.documentElement.classList.add('auth-unknown');
+  }
+})();
+</script>
+</head>
+<body>
+{% set auth_page = request.url.path in ['/login', '/register'] %}
+{% if not auth_page %}<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="PocketSmart AI home">
+      <span class="brand-mark">₹</span><span>PocketSmart AI</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a class="{% if request.url.path == '/planner/home' %}active-nav{% endif %}" href="/planner/home">🏠 <span>Home Interior</span></a>
+      <a class="{% if request.url.path == '/planner/party' %}active-nav{% endif %}" href="/planner/party">🎉 <span>Party</span></a>
+      <a class="{% if request.url.path == '/planner/jewelry' %}active-nav{% endif %}" href="/planner/jewelry">💎 <span>Jewelry</span></a>
+      <a id="dashboard-link" class="{% if request.url.path == '/dashboard' %}active-nav{% endif %}" href="/dashboard">Dashboard</a>
+      <a id="login-link" class="nav-cta auth-control" href="/login">Login</a><a id="logout-link" class="auth-control" href="#">Logout</a>
+    </nav>
+  </div>
+</header>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="footer"><div class="container">PocketSmart AI • Budget-aware planning for Home, Party and Jewelry • Demo provider catalog</div></footer>
+<script src="/static/js/app.js?v=11"></script>
+</body>
+</html>

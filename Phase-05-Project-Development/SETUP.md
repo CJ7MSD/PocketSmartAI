@@ -12,7 +12,7 @@ Copy `.env.example` to `.env` and add your own API keys. Never publish `.env`.
 
 ## Install
 
-Run `pip install -r requirements.txt`.
+Run `python -m pip install -r requirements.txt`.
 
 ## Run
 

@@ -12,17 +12,34 @@ Copy `.env.example` to `.env` and add your own API keys. Never publish `.env`.
 
 ## Install
 
-Run `python -m pip install -r requirements.txt`.
+Create a virtual environment:
 
-## Run
+```powershell
+py -m venv .venv
 
-Run `uvicorn app.main:app --reload`.
+Install the required packages:
 
-## Open
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+Run
 
-Open the local application URL shown by Uvicorn.
+Start the application:
 
-## API Keys
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+Open
 
-Use a Gemini API key for Gemini and a SerpApi private key for Google Shopping. Provider credentials are separate.
+Open the local application URL shown by Uvicorn:
 
+http://127.0.0.1:8000
+API Keys
+
+Use a Gemini API key for Gemini AI generation and a SerpApi API key for Google Shopping/live product data. Provider credentials are separate.
+
+Add the keys to .env:
+
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+SERPAPI_API_KEY=YOUR_SERPAPI_API_KEY
+
+Never upload .env or your API keys to GitHub.
+
+
+This keeps the **same format as your original Phase 05 setup**, while replacing the two commands that were cau

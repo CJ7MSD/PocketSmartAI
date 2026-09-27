@@ -20,6 +20,7 @@ py -m venv .venv
 Install the required packages:
 
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
 Run
 
 Start the application:
@@ -40,6 +41,3 @@ GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 SERPAPI_API_KEY=YOUR_SERPAPI_API_KEY
 
 Never upload .env or your API keys to GitHub.
-
-
-This keeps the **same format as your original Phase 05 setup**, while replacing the two commands that were cau

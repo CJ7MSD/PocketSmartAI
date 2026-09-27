@@ -1,43 +1,49 @@
-# PocketSmart AI – Setup Guide
+# PocketSmart AI
 
-Project: **PocketSmart AI – Your Smart Budget & Recommendation Assistant**
+Complete FastAPI + Jinja2 implementation of the supplied PocketSmart AI documentation.
 
-## Prerequisites
+## Included
+- Home Interior, Party, and Jewelry planners
+- Optional outfit image upload for Jewelry
+- Gemini multimodal integration using the current Google GenAI Python SDK
+- Structured AI output with Pydantic
+- Demo provider catalog for Amazon, Flipkart, IKEA, Swiggy, Zomato and OYO-style sources
+- Register/login/logout with HttpOnly JWT cookie
+- Recommendation history
+- Responsive frontend
+- AI fallback mode so the app works without an API key
+- Pytest API tests
 
-Python 3.x and internet access for Gemini/SerpApi integration.
+## Source-document decisions
+The supplied document mixes Flask and FastAPI wording. Its later architecture explicitly specifies FastAPI, `main.py`, Jinja2, authentication, history and the three planner APIs, so this build follows that FastAPI architecture. The document's Gemini 1.5 Flash Pro reference is historical; `GEMINI_MODEL` is configurable and defaults to a currently documented Flash model.
 
-## Environment
+The catalog is deliberately mocked: it does not scrape websites and does not claim live price or availability. Replace `app/catalog.py` with official/authorized provider APIs for production commerce data.
 
-Copy `.env.example` to `.env` and add your own API keys. Never publish `.env`.
+## Run in VS Code
+Python 3.11+ is recommended.
 
-## Install
-
-Create a virtual environment:
-
+Windows PowerShell:
 ```powershell
-py -m venv .venv
-
-Install the required packages:
-
+py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-
-Run
-
-Start the application:
-
+copy .env.example .env
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
-Open
+```
 
-Open the local application URL shown by Uvicorn:
+macOS/Linux:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+uvicorn app.main:app --reload
+```
 
-http://127.0.0.1:8000
-API Keys
+Open http://127.0.0.1:8000. Create an account first. If `GEMINI_API_KEY` is empty, fallback recommendations still work.
+`SERPAPI_API_KEY` is empty, fallback recommendations still work.
 
-Use a Gemini API key for Gemini AI generation and a SerpApi API key for Google Shopping/live product data. Provider credentials are separate.
+## Test
+`pytest -q`
 
-Add the keys to .env:
-git status
-GEMINI_API_KEY=YOUR_GEMINI_API_KEY
-SERPAPI_API_KEY=YOUR_SERPAPI_API_KEY
-
-Never upload .env or your API keys to GitHub.
+## Main APIs
+`GET /health`, `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/session-info`, `GET /api/auth/session-data`, `POST /api/planners/home`, `POST /api/planners/party`, `POST /api/planners/jewelry`, `GET /api/recommendations/{id}`, `GET /api/history`, `GET /api/history/{id}`.
